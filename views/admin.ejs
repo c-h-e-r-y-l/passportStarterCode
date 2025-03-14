@@ -1,0 +1,21 @@
+<h1 class="mt-4">Dashboard</h1>
+
+<p class="lead mb-3">Welcome <%= user.name %>
+</p>
+
+<p>
+    <strong>Current Active Sessions:</strong>
+    <% if (sessions && sessions.length> 0) { %>
+        <div style="list-style-type: none; padding: 0;">
+            <% sessions.forEach(session=> { %>
+                <div style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    SessionID: <%= session.sessionId %><br>
+                    UserID: <%= session.userId || 'Not logged in' %><br>
+                    <a href="/revoke/<%= session.sessionId %>">Revoke session</a>
+                </div>
+                <% }); %>
+        </div>
+        <% } else { %>
+            <p>No active sessions found.</p>
+            <% } %>
+</p>

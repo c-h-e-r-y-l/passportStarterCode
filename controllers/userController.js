@@ -21,7 +21,24 @@ function isUserValid(user, password) {
   return user.password === password;
 }
 
+const getGithubUser = (id) => {
+    let user = userModel.findGithubID(id);
+    if (user) {
+        return user;
+    }
+    return null;
+}
+
+function addGithubUser(id, name) {
+    let user = userModel.addUser(id, name);
+    if (user) {
+        return user;
+    }
+    return null;
+}
 module.exports = {
   getUserByEmailIdAndPassword,
   getUserById,
+  addGithubUser,
+  getGithubUser,
 };
